@@ -1,0 +1,66 @@
+.container {
+    border: solid 1px #000;
+    height: 20px;
+    width: 18%;
+    padding: 15px;
+    display: inline-block;
+    margin: 20px 10px;
+    line-height: 20px;
+}
+.display {
+    height: 20px;
+    max-width: 500px;
+    padding: 10px;
+    display: inline-block;
+    margin: 10px 10px;
+    line-height: 20px;
+    /* vertical-align: middle; */
+}
+.smallButton{
+    display: inline-block;
+    vertical-align: middle;
+    margin: 20px 10px;
+}
+.fieldset{
+    margin: 20px 10px;
+}
+ 
+ /* .square {
+    height: 10px;
+    width: auto;
+    padding: 5px;
+    display: inline-block;
+    margin: 10px 10px;
+    line-height: 10px;
+    border: solid 1px #000;
+    background-color: rgb(224, 221, 221);
+} */
+/* .counter {
+    height: 20px;
+    max-width: 200px;
+    padding: 15px;
+    display: inline-block;
+    margin: 20px 10px;
+    line-height: 20px;
+    vertical-align: middle;
+} */
+/* .squareRed{
+    height: 10px;
+    width: auto;
+    padding: 5px;
+    display: inline-block;
+    margin: 10px 10px;
+    line-height: 10px;
+    border: solid 1px #000;
+    background-color: red;
+} */
+/* .squareGreen{
+    height: 10px;
+    width: auto;
+    padding: 5px;
+    display: inline-block;
+    margin: 10px 10px;
+    line-height: 10px;
+    border: solid 1px #000;
+    background-color: green;
+} */
