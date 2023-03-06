@@ -12,16 +12,16 @@ const input2 = [...document.getElementsByName('macanie')];
 const btn2 = document.getElementById('button2');
 const container2 = document.getElementById('container2');
 console.log('input2', input2);
-const result2 = [];
+let result2 = [];
 console.log('result2', result2)
 btn2.addEventListener('click', () => passCheckBox(input2));
 
 function passCheckBox (list) {
+    result2 = [];
     list.forEach((el) => {
         if (el.checked === true) {
             result2.push(el.value);
             container2.textContent = result2;
-    //  } else {
         }
     })
 }
