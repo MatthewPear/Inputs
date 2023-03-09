@@ -6,7 +6,7 @@
      <link rel="stylesheet" href="style.css">
     </head>
     <body>
-      <fieldset class="fieldset">
+      <!-- <fieldset class="fieldset">
         <div>
           <label for="name">Name:</label>
         </div>
@@ -68,6 +68,71 @@
       </div>  
       <div class="container" id="container3">
       </div>
+      </fieldset> -->
+      <fieldset class="fieldset">
+        <legend>Fill the form:</legend>
+        <div class="display">
+          <label for="name">Name:</label>
+        </div>
+        <div>
+          <input type="text" id="name" name="name" class="display" required>
+        </div>
+        <div class="display">
+          <label for="surname">Surname:</label>
+        </div>
+        <div>
+          <input type="text" id="surname" name="surname" class="display" required>
+        </div>
+        <div class="display">
+          <label for="age">Age:</label>
+        </div>
+        <div>
+          <input type="number" id="age" name="age" min="1" class="display" required>
+        </div>
+        <div class="display">
+          <legend>Sex:</legend>
+        </div>
+        <div>
+          <input type="radio" id="male" name="sex" value="Male" 
+            checked >
+          <label for="male">Male</label>
+        </div>
+        <div>
+          <input type="radio" id="female" name="sex" value="Female">
+          <label for="female">Female</label>
+        </div>
+        <div class="display">
+          <label for="email">Your email adress:</label>
+        </div>
+        <div>
+          <input type="email" id="email" class="display" required placeholder="name@domain.com">
+        </div>
+        <div class="display">
+          <legend>Hobbies:</legend>
+        </div>
+        <div>
+          <input type="checkbox" id="sport" name="hobbies" value="Sport" />
+          <label for="sport">Sport</label>
+        </div>
+        <div>
+          <input type="checkbox" id="cars" name="hobbies" value="Cars" />
+          <label for="cars">Cars</label>
+        </div>
+        <div>
+          <input type="checkbox" id="music" name="hobbies" value="Music" />
+          <label for="music">Music</label>
+        </div>
+        <div>
+          <input type="checkbox" id="movies" name="hobbies" value="Movies" />
+          <label for="movies">Movies</label>
+        </div>
+        <div>
+          <input type="button" id="button" value="Save" class="smallButton">
+        </div>
+       
+      </fieldset>
+      <fieldset style="visibility:hidden;" id="outputField">
+        <legend>Users:</legend> 
       </fieldset>
       <script src="main.js"></script>
     </body>
