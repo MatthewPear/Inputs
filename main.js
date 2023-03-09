@@ -91,14 +91,17 @@ function drawUsers(list) {
     outputField.setAttribute("style", 'visibility:visible;');
 
     list.forEach((el) => {
-        usersTest(el);
-    })
-}
-
-function usersTest (el) {
-    usersList = [];
-    let outputUser = document.createElement('div');
+        usersList = [];
+        let outputUser = document.createElement('div');
         outputUser.innerHTML = "<strong>Name:</strong> " + el.name + "<br />" + "<strong>Surname:</strong> " + el.surname + "<br />" + "<strong>Age:</strong> " + el.age + "<br />" + "<strong>Sex:</strong> " + el.sex + "<br />" + "<strong>Email:</strong> " + el.email + "<br />" + "<strong>Hobbies:</strong> " + el.hobbies;
         outputUser.classList.add("container");
         outputField.appendChild(outputUser);
+    })
 }
+// function usersTest (el) {
+//     usersList = [];
+//     let outputUser = document.createElement('div');
+//         outputUser.innerHTML = "<strong>Name:</strong> " + el.name + "<br />" + "<strong>Surname:</strong> " + el.surname + "<br />" + "<strong>Age:</strong> " + el.age + "<br />" + "<strong>Sex:</strong> " + el.sex + "<br />" + "<strong>Email:</strong> " + el.email + "<br />" + "<strong>Hobbies:</strong> " + el.hobbies;
+//         outputUser.classList.add("container");
+//         outputField.appendChild(outputUser);
+// }
