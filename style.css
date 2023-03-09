@@ -3,9 +3,10 @@
     height: auto;
     width: auto;
     padding: 15px;
-    display: inline-block;
+    display: block;
     margin: 20px 10px;
     line-height: 20px;
+    
 }
 .display {
     height: 20px;
@@ -22,8 +23,19 @@
 .smallButton{
     display: inline-block;
     vertical-align: middle;
+    line-height: 20px;
     margin: 35px 10px;
-    padding: 10px;
+    padding: 20px 20px;
+    border-radius: 25%;
+    cursor: pointer; 
+}
+.smallButton:hover {
+    background-color: black;
+    color: white;
+}
+.smallButton:active {
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
 }
 .fieldset{
     margin: 20px 500px;

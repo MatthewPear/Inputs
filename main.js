@@ -56,9 +56,9 @@ console.log('inputList', inputList);
 let sexChoice = [];
 let hobbiesChoice = [];
 
-btnSave.addEventListener('click', () => collectData(inputList));
+btnSave.addEventListener('click', () => collectData());
 
-function collectData (list) {
+function collectData () {
     sexChoice = [];
     inputSex.forEach((el) => {
         if (el.checked === true) {
@@ -80,36 +80,41 @@ function collectData (list) {
         hobbies: hobbiesChoice, 
     }
     usersList.push(user);
-    drawUsers(usersList);
+    drawUser(user);
 }
 
-function drawUsers(list) {
-    console.log('list', list);
-
+function drawUser(user) {
     let outputField = document.getElementById('outputField');
     outputField.classList.add("fieldset");
     outputField.setAttribute("style", 'visibility:visible;');
 
-    const existinContainers = [...document.getElementsByClassName('container')];
-    if (existinContainers.length) {
-        existinContainers.forEach((el) => {
-            el.remove();
-        })
-    }
-
-    list.forEach((el) => {
-        
-        let outputUser = document.createElement('div');
-        outputUser.innerHTML = "<strong>Name:</strong> " + el.name + "<br />" + "<strong>Surname:</strong> " + el.surname + "<br />" + "<strong>Age:</strong> " + el.age + "<br />" + "<strong>Sex:</strong> " + el.sex + "<br />" + "<strong>Email:</strong> " + el.email + "<br />" + "<strong>Hobbies:</strong> " + el.hobbies;
-        outputUser.classList.add("container");
-        outputField.appendChild(outputUser);
-    })
+    let outputUser = document.createElement('div');
+    outputUser.innerHTML = "<strong>Name:</strong> " + user.name + "<br />" + "<strong>Surname:</strong> " + user.surname + "<br />" + "<strong>Age:</strong> " + user.age + "<br />" + "<strong>Sex:</strong> " + user.sex + "<br />" + "<strong>Email:</strong> " + user.email + "<br />" + "<strong>Hobbies:</strong> " + user.hobbies;
+    outputUser.classList.add("container");
+    outputField.appendChild(outputUser);
 }
+
 console.log("user add", usersList);
-// function usersTest (el) {
-//     usersList = [];
-//     let outputUser = document.createElement('div');
+
+// function drawUsers() {
+//     // console.log('list', list);
+
+//     let outputField = document.getElementById('outputField');
+//     outputField.classList.add("fieldset");
+//     outputField.setAttribute("style", 'visibility:visible;');
+
+//     const existinContainers = [...document.getElementsByClassName('container')];
+//     if (existinContainers.length) {
+//         existinContainers.forEach((el) => {
+//             el.remove();
+//         })
+//     }
+
+//     usersList.forEach((el) => {
+        
+//         let outputUser = document.createElement('div');
 //         outputUser.innerHTML = "<strong>Name:</strong> " + el.name + "<br />" + "<strong>Surname:</strong> " + el.surname + "<br />" + "<strong>Age:</strong> " + el.age + "<br />" + "<strong>Sex:</strong> " + el.sex + "<br />" + "<strong>Email:</strong> " + el.email + "<br />" + "<strong>Hobbies:</strong> " + el.hobbies;
 //         outputUser.classList.add("container");
 //         outputField.appendChild(outputUser);
+//     })
 // }
