@@ -71,25 +71,25 @@
       </fieldset> -->
       <fieldset class="fieldset">
         <legend>Fill the form:</legend>
-        <div class="display">
+        <div class="name">
           <label for="name">Name:</label>
         </div>
         <div>
           <input type="text" id="name" name="name" class="display" required>
         </div>
-        <div class="display">
+        <div class="name">
           <label for="surname">Surname:</label>
         </div>
         <div>
           <input type="text" id="surname" name="surname" class="display" required>
         </div>
-        <div class="display">
+        <div class="name">
           <label for="age">Age:</label>
         </div>
         <div>
           <input type="number" id="age" name="age" min="1" class="display" required>
         </div>
-        <div class="display">
+        <div class="name">
           <legend>Sex:</legend>
         </div>
         <div>
@@ -101,13 +101,13 @@
           <input type="radio" id="female" name="sex" value="Female">
           <label for="female">Female</label>
         </div>
-        <div class="display">
+        <div class="name">
           <label for="email">Your email adress:</label>
         </div>
         <div>
           <input type="email" id="email" class="display" required placeholder="name@domain.com">
         </div>
-        <div class="display">
+        <div class="name">
           <legend>Hobbies:</legend>
         </div>
         <div>
@@ -129,10 +129,23 @@
         <div>
           <input type="button" id="button" value="Save" class="smallButton">
         </div>
-       
       </fieldset>
       <fieldset style="visibility:hidden;" id="outputField">
         <legend>Users:</legend> 
+        <div class="menu">
+           <label>Sort by name:</label>
+            <input type="button" id="button2" value="A-Z" class="smallButton">
+            <input type="button" id="button3" value="Z-A" class="smallButton">
+          <label>Sort by age:</label>
+            <input type="button" id="button4" value="&#8639;" class="smallButton">
+            <input type="button" id="button5" value="&#8642;" class="smallButton">
+          <label>Filter by sex:</label>
+            <input type="button" id="button6" value="&#9794;" class="smallButton">
+            <input type="button" id="button7" value="&#9792;" class="smallButton">
+          <label>Search:</label>
+            <input type="search" id="site-search" name="q" class="display">
+            <input type="button" id="button8" value="Seek" class="smallButton">
+        </div>
       </fieldset>
       <script src="main.js"></script>
     </body>

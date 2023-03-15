@@ -3,12 +3,13 @@
     height: auto;
     width: auto;
     padding: 15px;
-    display: block;
-    margin: 20px 10px;
+    display: inline-block;
+    margin: 27px;
     line-height: 20px;
-    
+    border-radius: 25px;
 }
 .display {
+    border: solid 2px #000;
     height: 20px;
     max-width: 200px;
     padding: 10px;
@@ -18,16 +19,28 @@
     margin-left: 10px;
     line-height: 20px;
     border-radius: 25px;
-    /* vertical-align: middle; */
+}
+.name {
+    height: 20px;
+    max-width: 200px;
+    padding: 10px;
+    display: inline-block;
+    margin-top: 10px;
+    margin-right:  10px;
+    margin-left: 10px;
+    line-height: 20px;
+    border-radius: 25px;
 }
 .smallButton{
-    display: inline-block;
+    display: inline;
     vertical-align: middle;
     line-height: 20px;
     margin: 35px 10px;
     padding: 20px 20px;
     border-radius: 25%;
-    cursor: pointer; 
+    cursor: pointer;
+    border: solid 2px #000;
+    
 }
 .smallButton:hover {
     background-color: black;
@@ -43,6 +56,25 @@
     position: relative;
     width: auto;
     visibility: visible;
+}
+.userField{
+    margin: 20px;
+    border-radius: 25px;
+    position: relative;
+    width: 96%;
+    visibility: visible;
+    display: inline;
+}
+.menu{
+    /* border: solid 1px #000; */
+    height: auto;
+    width: 100%;
+    padding: 15px;
+    display: inline;
+    margin: 27px;
+    margin-right: 300px;
+    line-height: 30px;
+    border-radius: 25px;
 }
  /* .square {
     height: 10px;
