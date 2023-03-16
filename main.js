@@ -93,106 +93,136 @@ function drawUser(user) {
     outputUser.classList.add("container");
     outputField.appendChild(outputUser);
 }
-
 console.log("user add", usersList);
 
 const btn2 = document.getElementById('button2');
 const btn3 = document.getElementById('button3');
+btn2.addEventListener('click', () => sortNames("ascend"));
+btn3.addEventListener('click', () => sortNames("descend"));
 
-btn2.addEventListener('click', () => sortUsers("ascend"));
-btn3.addEventListener('click', () => sortUsers("descend"));
-
-function sortUsers(argument) {
+function sortNames(argument) {
     console.log('argument', argument);
-  
-    if (argument === "ascend") {
-
-        const existinContainers = [...document.getElementsByClassName('container')];
-        if (existinContainers.length) {
-            existinContainers.forEach((el) => {
-                el.remove();
-            })
-        }
-                        
-        let sortedASC = [...usersList].sort((a, b) => a.name - b.name);
+    const existinContainers = [...document.getElementsByClassName('container')];
+    if (existinContainers.length) {
+        existinContainers.forEach((el) => {
+            el.remove();
+        })
+    }
+    if (argument === "ascend") {        
+        let sortedASC = [...usersList].sort((a, b) => a.name.localeCompare(b.name));
         console.log('sortedASC', sortedASC);
-        sortedASC.forEach((el) => {
         
-        let outputUser = document.createElement('div');
-        outputUser.innerHTML = "<strong>Name:</strong> " + el.name + "<br />" + "<strong>Surname:</strong> " + el.surname + "<br />" + "<strong>Age:</strong> " + el.age + "<br />" + "<strong>Sex:</strong> " + el.sex + "<br />" + "<strong>Email:</strong> " + el.email + "<br />" + "<strong>Hobbies:</strong> " + el.hobbies;
-        outputUser.classList.add("container");
-        outputField.appendChild(outputUser);
+        sortedASC.forEach((el) => {
+            let outputUser = document.createElement('div');
+            outputUser.innerHTML = "<strong>Name:</strong> " + el.name + "<br />" + "<strong>Surname:</strong> " + el.surname + "<br />" + "<strong>Age:</strong> " + el.age + "<br />" + "<strong>Sex:</strong> " + el.sex + "<br />" + "<strong>Email:</strong> " + el.email + "<br />" + "<strong>Hobbies:</strong> " + el.hobbies;
+            outputUser.classList.add("container");
+            outputField.appendChild(outputUser);
         })
 
     } else {
-
-        const existinContainers = [...document.getElementsByClassName('container')];
-        if (existinContainers.length) {
-            existinContainers.forEach((el) => {
-                el.remove();
-            })
-        }
-
-        let sortedDES = [...usersList].reverse((a, b) => b.name - a.name);
+        let sortedDES = [...usersList].sort((a, b) => -1 * a.name.localeCompare(b.name));
         console.log('sortedDES', sortedDES);
-        sortedDES.forEach((el) => {
         
-        let outputUser = document.createElement('div');
-        outputUser.innerHTML = "<strong>Name:</strong> " + el.name + "<br />" + "<strong>Surname:</strong> " + el.surname + "<br />" + "<strong>Age:</strong> " + el.age + "<br />" + "<strong>Sex:</strong> " + el.sex + "<br />" + "<strong>Email:</strong> " + el.email + "<br />" + "<strong>Hobbies:</strong> " + el.hobbies;
-        outputUser.classList.add("container");
-        outputField.appendChild(outputUser);
+        sortedDES.forEach((el) => {
+            let outputUser = document.createElement('div');
+            outputUser.innerHTML = "<strong>Name:</strong> " + el.name + "<br />" + "<strong>Surname:</strong> " + el.surname + "<br />" + "<strong>Age:</strong> " + el.age + "<br />" + "<strong>Sex:</strong> " + el.sex + "<br />" + "<strong>Email:</strong> " + el.email + "<br />" + "<strong>Hobbies:</strong> " + el.hobbies;
+            outputUser.classList.add("container");
+            outputField.appendChild(outputUser);
         })
     }
 }
 
-// const btn4 = document.getElementById('button4');
-// const btn5 = document.getElementById('button5');
+const btn4 = document.getElementById('button4');
+const btn5 = document.getElementById('button5');
+btn4.addEventListener('click', () => sortAge("ascend"));
+btn5.addEventListener('click', () => sortAge("descend"));
 
-// btn4.addEventListener('click', () => seekUsers());
-// btn5.addEventListener('click', () => seekUsers());
-
-// function seekUsers() {
-    
-//     const existinContainers = [...document.getElementsByClassName('container')];
-//     if (existinContainers.length) {
-//         existinContainers.forEach((el) => {
-//             el.remove();
-//         })
-//     }
-
-//     usersList.forEach((el) => {
+function sortAge (argument) {
+    const existinContainers = [...document.getElementsByClassName('container')];
+    if (existinContainers.length) {
+        existinContainers.forEach((el) => {
+            el.remove();
+        })
+    }
+    if (argument === "ascend") {
+        let ageASC = [...usersList].sort((a, b) => a.age.localeCompare(b.age));
+        console.log('ageASC', ageASC);
         
-//         let outputUser = document.createElement('div');
-//         outputUser.innerHTML = "<strong>Name:</strong> " + el.name + "<br />" + "<strong>Surname:</strong> " + el.surname + "<br />" + "<strong>Age:</strong> " + el.age + "<br />" + "<strong>Sex:</strong> " + el.sex + "<br />" + "<strong>Email:</strong> " + el.email + "<br />" + "<strong>Hobbies:</strong> " + el.hobbies;
-//         outputUser.classList.add("container");
-//         outputField.appendChild(outputUser);
-//     })
-// }
+        ageASC.forEach((el) => {
+            let outputUser = document.createElement('div');
+            outputUser.innerHTML = "<strong>Name:</strong> " + el.name + "<br />" + "<strong>Surname:</strong> " + el.surname + "<br />" + "<strong>Age:</strong> " + el.age + "<br />" + "<strong>Sex:</strong> " + el.sex + "<br />" + "<strong>Email:</strong> " + el.email + "<br />" + "<strong>Hobbies:</strong> " + el.hobbies;
+            outputUser.classList.add("container");
+            outputField.appendChild(outputUser);
+        })
 
-// const btn6 = document.getElementById('button6');
-// const btn7 = document.getElementById('button7');
-
-// btn6.addEventListener('click', () => seekUsers());
-// btn7.addEventListener('click', () => seekUsers());
-
-// const searchField = getElementById('site-search');
-// const btn8 = document.getElementById('button8');
-// btn8.addEventListener('click', () => seekUsers());
-
-// function seekUsers() {
-    
-//     const existinContainers = [...document.getElementsByClassName('container')];
-//     if (existinContainers.length) {
-//         existinContainers.forEach((el) => {
-//             el.remove();
-//         })
-//     }
-
-//     usersList.forEach((el) => {
+    } else {
+        let ageDES = [...usersList].sort((a, b) => -1 * a.age.localeCompare(b.age));
+        console.log('ageDES', ageDES);
         
-//         let outputUser = document.createElement('div');
-//         outputUser.innerHTML = "<strong>Name:</strong> " + el.name + "<br />" + "<strong>Surname:</strong> " + el.surname + "<br />" + "<strong>Age:</strong> " + el.age + "<br />" + "<strong>Sex:</strong> " + el.sex + "<br />" + "<strong>Email:</strong> " + el.email + "<br />" + "<strong>Hobbies:</strong> " + el.hobbies;
-//         outputUser.classList.add("container");
-//         outputField.appendChild(outputUser);
-//     })
-// }
+        ageDES.forEach((el) => {
+            let outputUser = document.createElement('div');
+            outputUser.innerHTML = "<strong>Name:</strong> " + el.name + "<br />" + "<strong>Surname:</strong> " + el.surname + "<br />" + "<strong>Age:</strong> " + el.age + "<br />" + "<strong>Sex:</strong> " + el.sex + "<br />" + "<strong>Email:</strong> " + el.email + "<br />" + "<strong>Hobbies:</strong> " + el.hobbies;
+            outputUser.classList.add("container");
+            outputField.appendChild(outputUser);
+        })
+    }
+}
+
+const btn6 = document.getElementById('button6');
+const btn7 = document.getElementById('button7');
+btn6.addEventListener('click', () => filterSex ("M"));
+btn7.addEventListener('click', () => filterSex ("F"));
+
+function filterSex (argument) {
+    const existinContainers = [...document.getElementsByClassName('container')];
+    if (existinContainers.length) {
+        existinContainers.forEach((el) => {
+            el.remove();
+        })
+    }
+    if (argument === "M") {
+        let sexM = [...usersList].filter(el => el.sex === 'Male');
+        console.log('sexM', sexM);
+        
+        sexM.forEach((el) => {
+            let outputUser = document.createElement('div');
+            outputUser.innerHTML = "<strong>Name:</strong> " + el.name + "<br />" + "<strong>Surname:</strong> " + el.surname + "<br />" + "<strong>Age:</strong> " + el.age + "<br />" + "<strong>Sex:</strong> " + el.sex + "<br />" + "<strong>Email:</strong> " + el.email + "<br />" + "<strong>Hobbies:</strong> " + el.hobbies;
+            outputUser.classList.add("container");
+            outputField.appendChild(outputUser);
+        })
+    } else {
+        let sexF = [...usersList].filter(el => el.sex === 'Female');
+        console.log('sexF', sexF);
+        
+        sexF.forEach((el) => {
+            let outputUser = document.createElement('div');
+            outputUser.innerHTML = "<strong>Name:</strong> " + el.name + "<br />" + "<strong>Surname:</strong> " + el.surname + "<br />" + "<strong>Age:</strong> " + el.age + "<br />" + "<strong>Sex:</strong> " + el.sex + "<br />" + "<strong>Email:</strong> " + el.email + "<br />" + "<strong>Hobbies:</strong> " + el.hobbies;
+            outputUser.classList.add("container");
+            outputField.appendChild(outputUser);
+        })
+    }
+}
+
+const searchField = document.getElementById('site-search');
+const btn8 = document.getElementById('button8');
+btn8.addEventListener('click', () => seekUsers());
+// searchField.addEventListener('input', () => seekUsers());
+
+function seekUsers() {
+    const existinContainers = [...document.getElementsByClassName('container')];
+    if (existinContainers.length) {
+        existinContainers.forEach((el) => {
+            el.remove();
+        })
+    }
+    let inputText = searchField.value;
+
+    usersList.forEach((el) => {
+        if (el.name.toLowerCase().includes(inputText) || el.surname.toLowerCase().includes(inputText) || el.email.toLowerCase().includes(inputText)) {
+            let outputUser = document.createElement('div');
+            outputUser.innerHTML = "<strong>Name:</strong> " + el.name + "<br />" + "<strong>Surname:</strong> " + el.surname + "<br />" + "<strong>Age:</strong> " + el.age + "<br />" + "<strong>Sex:</strong> " + el.sex + "<br />" + "<strong>Email:</strong> " + el.email + "<br />" + "<strong>Hobbies:</strong> " + el.hobbies;
+            outputUser.classList.add("container");
+            outputField.appendChild(outputUser);
+        }
+    })
+}
