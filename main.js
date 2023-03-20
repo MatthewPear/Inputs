@@ -206,7 +206,7 @@ function filterSex (argument) {
 const searchField = document.getElementById('site-search');
 const btn8 = document.getElementById('button8');
 btn8.addEventListener('click', () => seekUsers());
-// searchField.addEventListener('input', () => seekUsers());
+searchField.addEventListener('input', () => seekUsers());
 
 function seekUsers() {
     const existinContainers = [...document.getElementsByClassName('container')];
@@ -216,9 +216,10 @@ function seekUsers() {
         })
     }
     let inputText = searchField.value;
+    let inputSearch = [...searchField.value];
 
     usersList.forEach((el) => {
-        if (el.name.toLowerCase().includes(inputText) || el.surname.toLowerCase().includes(inputText) || el.email.toLowerCase().includes(inputText)) {
+        if (inputSearch.length >= 3 || el.name.toLowerCase().includes(inputText) || el.surname.toLowerCase().includes(inputText) || el.email.toLowerCase().includes(inputText)) {
             let outputUser = document.createElement('div');
             outputUser.innerHTML = "<strong>Name:</strong> " + el.name + "<br />" + "<strong>Surname:</strong> " + el.surname + "<br />" + "<strong>Age:</strong> " + el.age + "<br />" + "<strong>Sex:</strong> " + el.sex + "<br />" + "<strong>Email:</strong> " + el.email + "<br />" + "<strong>Hobbies:</strong> " + el.hobbies;
             outputUser.classList.add("container");
