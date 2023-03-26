@@ -209,21 +209,22 @@ btn8.addEventListener('click', () => seekUsers());
 searchField.addEventListener('input', () => seekUsers());
 
 function seekUsers() {
-    const existinContainers = [...document.getElementsByClassName('container')];
-    if (existinContainers.length) {
-        existinContainers.forEach((el) => {
-            el.remove();
+    let inputText = searchField.value.toLowerCase();
+
+    if(inputText.length >= 3) {
+        const existinContainers = [...document.getElementsByClassName('container')];
+        if (existinContainers.length) {
+            existinContainers.forEach((el) => {
+                el.remove();
+            })
+        }
+        usersList.forEach((el) => {
+            if (el.name.toLowerCase().includes(inputText) || el.surname.toLowerCase().includes(inputText) || el.email.toLowerCase().includes(inputText)) {
+                let outputUser = document.createElement('div');
+                outputUser.innerHTML = "<strong>Name:</strong> " + el.name + "<br />" + "<strong>Surname:</strong> " + el.surname + "<br />" + "<strong>Age:</strong> " + el.age + "<br />" + "<strong>Sex:</strong> " + el.sex + "<br />" + "<strong>Email:</strong> " + el.email + "<br />" + "<strong>Hobbies:</strong> " + el.hobbies;
+                outputUser.classList.add("container");
+                outputField.appendChild(outputUser);
+            }
         })
     }
-    let inputText = searchField.value;
-    let inputSearch = [...searchField.value];
-
-    usersList.forEach((el) => {
-        if (inputSearch.length >= 3 || el.name.toLowerCase().includes(inputText) || el.surname.toLowerCase().includes(inputText) || el.email.toLowerCase().includes(inputText)) {
-            let outputUser = document.createElement('div');
-            outputUser.innerHTML = "<strong>Name:</strong> " + el.name + "<br />" + "<strong>Surname:</strong> " + el.surname + "<br />" + "<strong>Age:</strong> " + el.age + "<br />" + "<strong>Sex:</strong> " + el.sex + "<br />" + "<strong>Email:</strong> " + el.email + "<br />" + "<strong>Hobbies:</strong> " + el.hobbies;
-            outputUser.classList.add("container");
-            outputField.appendChild(outputUser);
-        }
-    })
 }
