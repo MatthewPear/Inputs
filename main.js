@@ -1,3 +1,4 @@
+/////////Task1
 // const input1 = document.getElementById('name');
 // const btn1 = document.getElementById('button1');
 // const container1 = document.getElementById('container1');
@@ -39,6 +40,7 @@
 //         }
 //     })
 // }
+///////////////////////Task2
 let usersList = [];
 console.log('usersList', usersList);
 
@@ -89,142 +91,172 @@ function drawUser(user) {
     outputField.setAttribute("style", 'visibility:visible;');
 
     let outputUser = document.createElement('div');
-    outputUser.innerHTML = "<strong>Name:</strong> " + user.name + "<br />" + "<strong>Surname:</strong> " + user.surname + "<br />" + "<strong>Age:</strong> " + user.age + "<br />" + "<strong>Sex:</strong> " + user.sex + "<br />" + "<strong>Email:</strong> " + user.email + "<br />" + "<strong>Hobbies:</strong> " + user.hobbies;
     outputUser.classList.add("container");
     outputField.appendChild(outputUser);
+
+    let nameDisplay = document.createElement('div');
+    nameDisplay.innerHTML = "<strong>Name:</strong> " + user.name;
+    nameDisplay.classList.add("name");
+    outputUser.appendChild(nameDisplay);
+
+    let surnameDisplay = document.createElement('div');
+    surnameDisplay.innerHTML = "<strong>Surname:</strong> " + user.surname;
+    surnameDisplay.classList.add("name");
+    outputUser.appendChild(surnameDisplay);
+
+    let ageDisplay = document.createElement('div');
+    ageDisplay.innerHTML = "<strong>Age:</strong> " + user.age;
+    ageDisplay.classList.add("name");
+    outputUser.appendChild(ageDisplay);
+
+    let sexDisplay = document.createElement('div');
+    sexDisplay.innerHTML = "<strong>Sex:</strong> " + user.sex;
+    sexDisplay.classList.add("name");
+    outputUser.appendChild(sexDisplay);
+
+    let emailDisplay = document.createElement('div');
+    emailDisplay.innerHTML = "<strong>Email:</strong> " + "<br />" + user.email;
+    emailDisplay.classList.add("name");
+    outputUser.appendChild(emailDisplay);
+
+    let hobbiesDisplay = document.createElement('div');
+    hobbiesDisplay.innerHTML = "<strong>Hobbies:</strong> " + "<br />" + user.hobbies;
+    hobbiesDisplay.classList.add("name");
+    outputUser.appendChild(hobbiesDisplay);
+
+    let deleteBtn = document.createElement('button');
+    deleteBtn.innerHTML = "Delete"
+    deleteBtn.classList.add("smallButton");
+    deleteBtn.addEventListener('click', () => deleteUser ());
+    outputUser.appendChild(deleteBtn);
 }
 console.log("user add", usersList);
 
 const btn2 = document.getElementById('button2');
 const btn3 = document.getElementById('button3');
-btn2.addEventListener('click', () => sortNames("ascend"));
-btn3.addEventListener('click', () => sortNames("descend"));
-
-function sortNames(argument) {
-    console.log('argument', argument);
-    const existinContainers = [...document.getElementsByClassName('container')];
-    if (existinContainers.length) {
-        existinContainers.forEach((el) => {
-            el.remove();
-        })
-    }
-    if (argument === "ascend") {        
-        let sortedASC = [...usersList].sort((a, b) => a.name.localeCompare(b.name));
-        console.log('sortedASC', sortedASC);
-        
-        sortedASC.forEach((el) => {
-            let outputUser = document.createElement('div');
-            outputUser.innerHTML = "<strong>Name:</strong> " + el.name + "<br />" + "<strong>Surname:</strong> " + el.surname + "<br />" + "<strong>Age:</strong> " + el.age + "<br />" + "<strong>Sex:</strong> " + el.sex + "<br />" + "<strong>Email:</strong> " + el.email + "<br />" + "<strong>Hobbies:</strong> " + el.hobbies;
-            outputUser.classList.add("container");
-            outputField.appendChild(outputUser);
-        })
-
-    } else {
-        let sortedDES = [...usersList].sort((a, b) => -1 * a.name.localeCompare(b.name));
-        console.log('sortedDES', sortedDES);
-        
-        sortedDES.forEach((el) => {
-            let outputUser = document.createElement('div');
-            outputUser.innerHTML = "<strong>Name:</strong> " + el.name + "<br />" + "<strong>Surname:</strong> " + el.surname + "<br />" + "<strong>Age:</strong> " + el.age + "<br />" + "<strong>Sex:</strong> " + el.sex + "<br />" + "<strong>Email:</strong> " + el.email + "<br />" + "<strong>Hobbies:</strong> " + el.hobbies;
-            outputUser.classList.add("container");
-            outputField.appendChild(outputUser);
-        })
-    }
-}
-
 const btn4 = document.getElementById('button4');
 const btn5 = document.getElementById('button5');
-btn4.addEventListener('click', () => sortAge("ascend"));
-btn5.addEventListener('click', () => sortAge("descend"));
+const btn6 = document.getElementById('button6');
+const btn7 = document.getElementById('button7');
+btn2.addEventListener('click', () => sortUsers("ascendNames"));
+btn3.addEventListener('click', () => sortUsers("descendNames"));
+btn4.addEventListener('click', () => sortUsers("ascendAge"));
+btn5.addEventListener('click', () => sortUsers("descendAge"));
+btn6.addEventListener('click', () => sortUsers ("Male"));
+btn7.addEventListener('click', () => sortUsers ("Female"));
 
-function sortAge (argument) {
-    const existinContainers = [...document.getElementsByClassName('container')];
-    if (existinContainers.length) {
-        existinContainers.forEach((el) => {
+function sortUsers (sortOption) {
+    console.log('sortOption', sortOption);
+    const existingContainers = [...document.getElementsByClassName('container')];
+    console.log('existingContainers', existingContainers);
+    if (existingContainers.length) {
+        existingContainers.forEach((el) => {
             el.remove();
         })
     }
-    if (argument === "ascend") {
+    if (sortOption === "ascendNames") {        
+        let namesASC = [...usersList].sort((a, b) => a.name.localeCompare(b.name));
+        console.log('sortedASC', namesASC);
+        
+        namesASC.forEach((el) => {
+            drawUser(el);
+        })
+    } else if (sortOption === "descendNames") {
+        let namesDES = [...usersList].sort((a, b) => -1 * a.name.localeCompare(b.name));
+        console.log('sortedDES', namesDES);
+        
+        namesDES.forEach((el) => {
+            drawUser(el);
+        })
+    } else if (sortOption === "ascendAge") {
         let ageASC = [...usersList].sort((a, b) => a.age.localeCompare(b.age));
         console.log('ageASC', ageASC);
         
         ageASC.forEach((el) => {
-            let outputUser = document.createElement('div');
-            outputUser.innerHTML = "<strong>Name:</strong> " + el.name + "<br />" + "<strong>Surname:</strong> " + el.surname + "<br />" + "<strong>Age:</strong> " + el.age + "<br />" + "<strong>Sex:</strong> " + el.sex + "<br />" + "<strong>Email:</strong> " + el.email + "<br />" + "<strong>Hobbies:</strong> " + el.hobbies;
-            outputUser.classList.add("container");
-            outputField.appendChild(outputUser);
+            drawUser(el);
         })
-
-    } else {
+    } else if (sortOption === "descendAge") {
         let ageDES = [...usersList].sort((a, b) => -1 * a.age.localeCompare(b.age));
         console.log('ageDES', ageDES);
         
         ageDES.forEach((el) => {
-            let outputUser = document.createElement('div');
-            outputUser.innerHTML = "<strong>Name:</strong> " + el.name + "<br />" + "<strong>Surname:</strong> " + el.surname + "<br />" + "<strong>Age:</strong> " + el.age + "<br />" + "<strong>Sex:</strong> " + el.sex + "<br />" + "<strong>Email:</strong> " + el.email + "<br />" + "<strong>Hobbies:</strong> " + el.hobbies;
-            outputUser.classList.add("container");
-            outputField.appendChild(outputUser);
+            drawUser(el);
         })
-    }
-}
-
-const btn6 = document.getElementById('button6');
-const btn7 = document.getElementById('button7');
-btn6.addEventListener('click', () => filterSex ("M"));
-btn7.addEventListener('click', () => filterSex ("F"));
-
-function filterSex (argument) {
-    const existinContainers = [...document.getElementsByClassName('container')];
-    if (existinContainers.length) {
-        existinContainers.forEach((el) => {
-            el.remove();
-        })
-    }
-    if (argument === "M") {
+    } else if (sortOption === "Male") {
         let sexM = [...usersList].filter(el => el.sex === 'Male');
         console.log('sexM', sexM);
         
         sexM.forEach((el) => {
-            let outputUser = document.createElement('div');
-            outputUser.innerHTML = "<strong>Name:</strong> " + el.name + "<br />" + "<strong>Surname:</strong> " + el.surname + "<br />" + "<strong>Age:</strong> " + el.age + "<br />" + "<strong>Sex:</strong> " + el.sex + "<br />" + "<strong>Email:</strong> " + el.email + "<br />" + "<strong>Hobbies:</strong> " + el.hobbies;
-            outputUser.classList.add("container");
-            outputField.appendChild(outputUser);
+            drawUser(el);
         })
-    } else {
+    } else if (sortOption === "Female") {
         let sexF = [...usersList].filter(el => el.sex === 'Female');
         console.log('sexF', sexF);
         
         sexF.forEach((el) => {
-            let outputUser = document.createElement('div');
-            outputUser.innerHTML = "<strong>Name:</strong> " + el.name + "<br />" + "<strong>Surname:</strong> " + el.surname + "<br />" + "<strong>Age:</strong> " + el.age + "<br />" + "<strong>Sex:</strong> " + el.sex + "<br />" + "<strong>Email:</strong> " + el.email + "<br />" + "<strong>Hobbies:</strong> " + el.hobbies;
-            outputUser.classList.add("container");
-            outputField.appendChild(outputUser);
+            drawUser(el);
         })
     }
 }
 
 const searchField = document.getElementById('site-search');
 const btn8 = document.getElementById('button8');
-btn8.addEventListener('click', () => seekUsers());
+const btn9 = document.getElementById('button9');
 searchField.addEventListener('input', () => seekUsers());
+btn8.addEventListener('click', () => clearSearch());
 
 function seekUsers() {
     let inputText = searchField.value.toLowerCase();
 
     if(inputText.length >= 3) {
-        const existinContainers = [...document.getElementsByClassName('container')];
-        if (existinContainers.length) {
-            existinContainers.forEach((el) => {
+        const existingContainers = [...document.getElementsByClassName('container')];
+        if (existingContainers.length) {
+            existingContainers.forEach((el) => {
                 el.remove();
             })
         }
         usersList.forEach((el) => {
             if (el.name.toLowerCase().includes(inputText) || el.surname.toLowerCase().includes(inputText) || el.email.toLowerCase().includes(inputText)) {
-                let outputUser = document.createElement('div');
-                outputUser.innerHTML = "<strong>Name:</strong> " + el.name + "<br />" + "<strong>Surname:</strong> " + el.surname + "<br />" + "<strong>Age:</strong> " + el.age + "<br />" + "<strong>Sex:</strong> " + el.sex + "<br />" + "<strong>Email:</strong> " + el.email + "<br />" + "<strong>Hobbies:</strong> " + el.hobbies;
-                outputUser.classList.add("container");
-                outputField.appendChild(outputUser);
+                drawUser(el);
             }
+        })
+    } else if (inputText.length === 0) {
+        const existingContainers = [...document.getElementsByClassName('container')];
+        if (existingContainers.length) {
+            existingContainers.forEach((el) => {
+                el.remove();
+            })
+        }
+        usersList.forEach((el) => {
+            drawUser(el);
         })
     }
 }
+
+function clearSearch() {
+    searchField.value = '';
+
+    const existingContainers = [...document.getElementsByClassName('container')];
+    if (existingContainers.length) {
+        existingContainers.forEach((el) => {
+            el.remove();
+        })
+    }
+    usersList.forEach((el) => {
+        drawUser(el);
+    })
+}
+
+// function deleteUser () {
+    
+
+//     const existingContainers = [...document.getElementsByClassName('container')];
+//     if (existingContainers.length) {
+//         existingContainers.forEach((el) => {
+//             el.remove();
+//         })
+//     }
+//     usersList.forEach((el) => {
+//         drawUser(el);
+//     })
+// }
