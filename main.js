@@ -42,6 +42,7 @@
 // }
 ///////////////////////Task2
 let usersList = [];
+let usersDisplay = [];
 console.log('usersList', usersList);
 
 const inputName = document.getElementById('name');
@@ -82,6 +83,7 @@ function collectData () {
         hobbies: hobbiesChoice, 
     }
     usersList.push(user);
+    usersDisplay.push(user);
     drawUser(user);
 }
 
@@ -95,32 +97,32 @@ function drawUser(user) {
     outputField.appendChild(outputUser);
 
     let nameDisplay = document.createElement('div');
-    nameDisplay.innerHTML = "<strong>Name:</strong> " + user.name;
+    nameDisplay.innerHTML = "Name: " + user.name;
     nameDisplay.classList.add("name");
     outputUser.appendChild(nameDisplay);
 
     let surnameDisplay = document.createElement('div');
-    surnameDisplay.innerHTML = "<strong>Surname:</strong> " + user.surname;
+    surnameDisplay.innerHTML = "Surname: " + user.surname;
     surnameDisplay.classList.add("name");
     outputUser.appendChild(surnameDisplay);
 
     let ageDisplay = document.createElement('div');
-    ageDisplay.innerHTML = "<strong>Age:</strong> " + user.age;
+    ageDisplay.innerHTML = "Age: " + user.age;
     ageDisplay.classList.add("name");
     outputUser.appendChild(ageDisplay);
 
     let sexDisplay = document.createElement('div');
-    sexDisplay.innerHTML = "<strong>Sex:</strong> " + user.sex;
+    sexDisplay.innerHTML = "Sex: " + user.sex;
     sexDisplay.classList.add("name");
     outputUser.appendChild(sexDisplay);
 
     let emailDisplay = document.createElement('div');
-    emailDisplay.innerHTML = "<strong>Email:</strong> " + "<br />" + user.email;
+    emailDisplay.innerHTML = "Email: " + user.email;
     emailDisplay.classList.add("name");
     outputUser.appendChild(emailDisplay);
 
     let hobbiesDisplay = document.createElement('div');
-    hobbiesDisplay.innerHTML = "<strong>Hobbies:</strong> " + "<br />" + user.hobbies;
+    hobbiesDisplay.innerHTML = "Hobbies: " + user.hobbies;
     hobbiesDisplay.classList.add("name");
     outputUser.appendChild(hobbiesDisplay);
 
@@ -146,9 +148,8 @@ btn6.addEventListener('click', () => sortUsers ("Male"));
 btn7.addEventListener('click', () => sortUsers ("Female"));
 
 function sortUsers (sortOption) {
-    console.log('sortOption', sortOption);
+    usersDisplay = [];
     const existingContainers = [...document.getElementsByClassName('container')];
-    console.log('existingContainers', existingContainers);
     if (existingContainers.length) {
         existingContainers.forEach((el) => {
             el.remove();
@@ -159,45 +160,50 @@ function sortUsers (sortOption) {
         console.log('sortedASC', namesASC);
         
         namesASC.forEach((el) => {
-            drawUser(el);
+            usersDisplay.push(el);
         })
     } else if (sortOption === "descendNames") {
         let namesDES = [...usersList].sort((a, b) => -1 * a.name.localeCompare(b.name));
         console.log('sortedDES', namesDES);
         
         namesDES.forEach((el) => {
-            drawUser(el);
+            usersDisplay.push(el);
         })
     } else if (sortOption === "ascendAge") {
         let ageASC = [...usersList].sort((a, b) => a.age.localeCompare(b.age));
         console.log('ageASC', ageASC);
         
         ageASC.forEach((el) => {
-            drawUser(el);
+            usersDisplay.push(el);
         })
     } else if (sortOption === "descendAge") {
         let ageDES = [...usersList].sort((a, b) => -1 * a.age.localeCompare(b.age));
         console.log('ageDES', ageDES);
         
         ageDES.forEach((el) => {
-            drawUser(el);
+            usersDisplay.push(el);
         })
     } else if (sortOption === "Male") {
         let sexM = [...usersList].filter(el => el.sex === 'Male');
         console.log('sexM', sexM);
         
         sexM.forEach((el) => {
-            drawUser(el);
+            usersDisplay.push(el);
         })
     } else if (sortOption === "Female") {
         let sexF = [...usersList].filter(el => el.sex === 'Female');
         console.log('sexF', sexF);
         
         sexF.forEach((el) => {
-            drawUser(el);
+            usersDisplay.push(el);
         })
     }
+    usersDisplay.forEach((el) => {
+        drawUser(el);
+    })
 }
+
+console.log("usersDisplay" , usersDisplay);
 
 const searchField = document.getElementById('site-search');
 const btn8 = document.getElementById('button8');
