@@ -54,7 +54,7 @@ const inputHobbies = [...document.getElementsByName('hobbies')];
 const btnSave = document.getElementById('button');
 
 const inputList = [inputName, inputSurname, inputAge, inputSex, inputEmail, inputHobbies];
-console.log('inputList', inputList);
+// console.log('inputList', inputList);
 
 let sexChoice = [];
 let hobbiesChoice = [];
@@ -148,61 +148,35 @@ btn6.addEventListener('click', () => sortUsers ("Male"));
 btn7.addEventListener('click', () => sortUsers ("Female"));
 
 function sortUsers (sortOption) {
-    usersDisplay = [];
-    const existingContainers = [...document.getElementsByClassName('container')];
-    if (existingContainers.length) {
-        existingContainers.forEach((el) => {
-            el.remove();
-        })
-    }
-    if (sortOption === "ascendNames") {        
-        let namesASC = [...usersList].sort((a, b) => a.name.localeCompare(b.name));
-        console.log('sortedASC', namesASC);
-        
-        namesASC.forEach((el) => {
-            usersDisplay.push(el);
-        })
-    } else if (sortOption === "descendNames") {
-        let namesDES = [...usersList].sort((a, b) => -1 * a.name.localeCompare(b.name));
-        console.log('sortedDES', namesDES);
-        
-        namesDES.forEach((el) => {
-            usersDisplay.push(el);
-        })
-    } else if (sortOption === "ascendAge") {
-        let ageASC = [...usersList].sort((a, b) => a.age.localeCompare(b.age));
-        console.log('ageASC', ageASC);
-        
-        ageASC.forEach((el) => {
-            usersDisplay.push(el);
-        })
-    } else if (sortOption === "descendAge") {
-        let ageDES = [...usersList].sort((a, b) => -1 * a.age.localeCompare(b.age));
-        console.log('ageDES', ageDES);
-        
-        ageDES.forEach((el) => {
-            usersDisplay.push(el);
-        })
-    } else if (sortOption === "Male") {
-        let sexM = [...usersList].filter(el => el.sex === 'Male');
-        console.log('sexM', sexM);
-        
-        sexM.forEach((el) => {
-            usersDisplay.push(el);
-        })
-    } else if (sortOption === "Female") {
-        let sexF = [...usersList].filter(el => el.sex === 'Female');
-        console.log('sexF', sexF);
-        
-        sexF.forEach((el) => {
-            usersDisplay.push(el);
-        })
-    }
-    usersDisplay.forEach((el) => {
-        drawUser(el);
-    })
-}
+    clearContainers();
 
+    if (sortOption === "ascendNames") {        
+        let usersDisplay = usersDisplay.sort((a, b) => a.name.localeCompare(b.name));
+        console.log('sortedASC', usersDisplay);
+       
+    } else if (sortOption === "descendNames") {
+        let usersDisplay = usersDisplay.sort((a, b) => -1 * a.name.localeCompare(b.name));
+        console.log('sortedDES', usersDisplay);
+        
+    } else if (sortOption === "ascendAge") {
+        let usersDisplay = usersDisplay.sort((a, b) => a.age.localeCompare(b.age));
+        console.log('ageASC', usersDisplay);
+        
+    } else if (sortOption === "descendAge") {
+        let usersDisplay = usersDisplay.sort((a, b) => -1 * a.age.localeCompare(b.age));
+        console.log('ageDES', usersDisplay);
+        
+    } else if (sortOption === "Male") {
+        let usersDisplay = usersDisplay.filter(el => el.sex === 'Male');
+        console.log('sexM', usersDisplay);
+        
+    } else if (sortOption === "Female") {
+        let usersDisplay = usersDisplay.filter(el => el.sex === 'Female');
+        console.log('sexF', usersDisplay);
+        
+    }
+    drawList(usersDisplay);
+}
 console.log("usersDisplay" , usersDisplay);
 
 const searchField = document.getElementById('site-search');
@@ -212,57 +186,47 @@ searchField.addEventListener('input', () => seekUsers());
 btn8.addEventListener('click', () => clearSearch());
 
 function seekUsers() {
+    clearContainers();
+
     let inputText = searchField.value.toLowerCase();
 
     if(inputText.length >= 3) {
-        const existingContainers = [...document.getElementsByClassName('container')];
-        if (existingContainers.length) {
-            existingContainers.forEach((el) => {
-                el.remove();
-            })
-        }
-        usersList.forEach((el) => {
-            if (el.name.toLowerCase().includes(inputText) || el.surname.toLowerCase().includes(inputText) || el.email.toLowerCase().includes(inputText)) {
-                drawUser(el);
-            }
-        })
+        const seekResult = usersList.filter(el => el.name.toLowerCase().includes(inputText) || el.surname.toLowerCase().includes(inputText) || el.email.toLowerCase().includes(inputText));
+        usersDisplay = seekResult;
+        drawList(usersDisplay);
     } else if (inputText.length === 0) {
-        const existingContainers = [...document.getElementsByClassName('container')];
-        if (existingContainers.length) {
-            existingContainers.forEach((el) => {
-                el.remove();
-            })
-        }
-        usersList.forEach((el) => {
-            drawUser(el);
-        })
+        usersDisplay = usersList;
+        drawList(usersDisplay);
     }
+}
+
+function drawList(list) {
+    list.forEach((el) => {
+        drawUser(el);
+    })
 }
 
 function clearSearch() {
     searchField.value = '';
+    clearContainers();    
+    usersDisplay = usersList;
+    drawList(usersDisplay);
+}
 
+function clearContainers() {
     const existingContainers = [...document.getElementsByClassName('container')];
     if (existingContainers.length) {
         existingContainers.forEach((el) => {
             el.remove();
         })
     }
-    usersList.forEach((el) => {
-        drawUser(el);
-    })
 }
 
 // function deleteUser () {
     
 
-//     const existingContainers = [...document.getElementsByClassName('container')];
-//     if (existingContainers.length) {
-//         existingContainers.forEach((el) => {
-//             el.remove();
-//         })
-//     }
-//     usersList.forEach((el) => {
-//         drawUser(el);
-//     })
+
+//     clearContainers();    
+//     usersDisplay = usersList;
+//     drawList(usersDisplay);
 // }
