@@ -1,10 +1,10 @@
 .container {
-    border: solid 1px #000;
+    border: solid 2px #000;
     height: 454px;
     width: 195px;
     padding: 15px;
     display: inline-block;
-    margin: 18px;
+    margin: 17px;
     line-height: 20px;
     border-radius: 25px;
     position:relative
@@ -32,7 +32,7 @@
     line-height: 20px;
     border-radius: 25px;
 }
-.smallButton{
+.smallButton {
     display: inline;
     vertical-align: middle;
     line-height: 20px;
@@ -51,31 +51,32 @@
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
-.fieldset{
+.fieldset {
     margin: 20px 500px;
     border-radius: 25px;
     position: relative;
     width: auto;
     visibility: visible;
 }
-.userField{
+.userField {
     margin: 20px;
     border-radius: 25px;
     position: relative;
-    width: 96%;
+    width: auto;
     visibility: visible;
-    display: inline;
+    display: block;
 }
-.menu{
-    /* border: solid 1px #000; */
+.menu {
+    border: solid 2px #000;
     height: auto;
     width: 100%;
-    padding: 15px;
+    padding: 40px;
     display: inline;
     margin: 27px;
-    margin-right: 300px;
+    margin-right: 120px;
     line-height: 30px;
     border-radius: 25px;
+    position: relative;
 }
  /* .square {
     height: 10px;

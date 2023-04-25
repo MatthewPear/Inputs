@@ -53,9 +53,6 @@ const inputEmail = document.getElementById('email');
 const inputHobbies = [...document.getElementsByName('hobbies')];
 const btnSave = document.getElementById('button');
 
-const inputList = [inputName, inputSurname, inputAge, inputSex, inputEmail, inputHobbies];
-// console.log('inputList', inputList);
-
 let sexChoice = [];
 let hobbiesChoice = [];
 // console.log('sexChoice: ', sexChoice);
@@ -126,10 +123,12 @@ function drawUser(user) {
     hobbiesDisplay.classList.add("name");
     outputUser.appendChild(hobbiesDisplay);
 
+    let myIndex = usersList.findIndex(el => el.name === user.name);
+        
     let deleteBtn = document.createElement('button');
     deleteBtn.innerHTML = "Delete"
     deleteBtn.classList.add("smallButton");
-    deleteBtn.addEventListener('click', () => deleteUser ());
+    deleteBtn.addEventListener('click', () => deleteUser (myIndex));
     outputUser.appendChild(deleteBtn);
 }
 console.log("user add", usersList);
@@ -151,27 +150,27 @@ function sortUsers (sortOption) {
     clearContainers();
 
     if (sortOption === "ascendNames") {        
-        let usersDisplay = usersDisplay.sort((a, b) => a.name.localeCompare(b.name));
+        usersDisplay = usersDisplay.sort((a, b) => a.name.localeCompare(b.name));
         console.log('sortedASC', usersDisplay);
        
     } else if (sortOption === "descendNames") {
-        let usersDisplay = usersDisplay.sort((a, b) => -1 * a.name.localeCompare(b.name));
+        usersDisplay = usersDisplay.sort((a, b) => b.name.localeCompare(a.name));
         console.log('sortedDES', usersDisplay);
         
     } else if (sortOption === "ascendAge") {
-        let usersDisplay = usersDisplay.sort((a, b) => a.age.localeCompare(b.age));
+        usersDisplay = usersDisplay.sort((a, b) => a.age.localeCompare(b.age));
         console.log('ageASC', usersDisplay);
         
     } else if (sortOption === "descendAge") {
-        let usersDisplay = usersDisplay.sort((a, b) => -1 * a.age.localeCompare(b.age));
+        usersDisplay = usersDisplay.sort((a, b) => b.age.localeCompare(a.age));
         console.log('ageDES', usersDisplay);
         
     } else if (sortOption === "Male") {
-        let usersDisplay = usersDisplay.filter(el => el.sex === 'Male');
+        usersDisplay = usersDisplay.filter(el => el.sex === 'Male');
         console.log('sexM', usersDisplay);
         
     } else if (sortOption === "Female") {
-        let usersDisplay = usersDisplay.filter(el => el.sex === 'Female');
+        usersDisplay = usersDisplay.filter(el => el.sex === 'Female');
         console.log('sexF', usersDisplay);
         
     }
@@ -181,7 +180,6 @@ console.log("usersDisplay" , usersDisplay);
 
 const searchField = document.getElementById('site-search');
 const btn8 = document.getElementById('button8');
-const btn9 = document.getElementById('button9');
 searchField.addEventListener('input', () => seekUsers());
 btn8.addEventListener('click', () => clearSearch());
 
@@ -194,7 +192,7 @@ function seekUsers() {
         const seekResult = usersList.filter(el => el.name.toLowerCase().includes(inputText) || el.surname.toLowerCase().includes(inputText) || el.email.toLowerCase().includes(inputText));
         usersDisplay = seekResult;
         drawList(usersDisplay);
-    } else if (inputText.length === 0) {
+    } else if (inputText.length < 3) {
         usersDisplay = usersList;
         drawList(usersDisplay);
     }
@@ -222,11 +220,11 @@ function clearContainers() {
     }
 }
 
-// function deleteUser () {
-    
+function deleteUser (myIndex) {
+    console.log("Del User: " + myIndex);
 
-
-//     clearContainers();    
-//     usersDisplay = usersList;
-//     drawList(usersDisplay);
-// }
+    usersList.splice(myIndex, 1);
+    clearContainers();    
+    usersDisplay = usersList;
+    drawList(usersDisplay);
+}
