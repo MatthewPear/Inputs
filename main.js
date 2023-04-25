@@ -143,8 +143,8 @@ btn2.addEventListener('click', () => sortUsers("ascendNames"));
 btn3.addEventListener('click', () => sortUsers("descendNames"));
 btn4.addEventListener('click', () => sortUsers("ascendAge"));
 btn5.addEventListener('click', () => sortUsers("descendAge"));
-btn6.addEventListener('click', () => sortUsers ("Male"));
-btn7.addEventListener('click', () => sortUsers ("Female"));
+btn6.addEventListener('click', () => filterUsers ("Male"));
+btn7.addEventListener('click', () => filterUsers ("Female"));
 
 function sortUsers (sortOption) {
     clearContainers();
@@ -164,16 +164,24 @@ function sortUsers (sortOption) {
     } else if (sortOption === "descendAge") {
         usersDisplay = usersDisplay.sort((a, b) => b.age.localeCompare(a.age));
         console.log('ageDES', usersDisplay);
-        
-    } else if (sortOption === "Male") {
-        usersDisplay = usersDisplay.filter(el => el.sex === 'Male');
-        console.log('sexM', usersDisplay);
-        
-    } else if (sortOption === "Female") {
-        usersDisplay = usersDisplay.filter(el => el.sex === 'Female');
-        console.log('sexF', usersDisplay);
-        
+  
     }
+    drawList(usersDisplay);
+}
+
+function filterUsers (filterOption) {
+    clearContainers();
+
+    if (filterOption === "Male") {
+        usersDisplay = usersList.filter(el => el.sex === 'Male');
+        console.log('sexM', usersDisplay);
+    
+    } else if (filterOption === "Female") {
+        usersDisplay = usersList.filter(el => el.sex === 'Female');
+        console.log('sexF', usersDisplay);
+
+    }
+    searchField.value = '';
     drawList(usersDisplay);
 }
 console.log("usersDisplay" , usersDisplay);
@@ -192,7 +200,9 @@ function seekUsers() {
         const seekResult = usersList.filter(el => el.name.toLowerCase().includes(inputText) || el.surname.toLowerCase().includes(inputText) || el.email.toLowerCase().includes(inputText));
         usersDisplay = seekResult;
         drawList(usersDisplay);
-    } else if (inputText.length < 3) {
+    } else if (inputText.length < 3 && inputText.length > 0) {
+        drawList(usersDisplay);
+    } else if (inputText.length === 0) {
         usersDisplay = usersList;
         drawList(usersDisplay);
     }
@@ -223,6 +233,7 @@ function clearContainers() {
 function deleteUser (myIndex) {
     console.log("Del User: " + myIndex);
 
+    searchField.value = '';
     usersList.splice(myIndex, 1);
     clearContainers();    
     usersDisplay = usersList;
