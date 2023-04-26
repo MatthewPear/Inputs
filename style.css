@@ -78,6 +78,10 @@
     border-radius: 25px;
     position: relative;
 }
+.noResult {
+    vertical-align: middle;
+    margin-top: 200px;
+}
  /* .square {
     height: 10px;
     width: auto;

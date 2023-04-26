@@ -51,11 +51,11 @@ const inputAge = document.getElementById('age');
 const inputSex = [...document.getElementsByName('sex')];
 const inputEmail = document.getElementById('email');
 const inputHobbies = [...document.getElementsByName('hobbies')];
-const btnSave = document.getElementById('button');
 
 let sexChoice = [];
 let hobbiesChoice = [];
 // console.log('sexChoice: ', sexChoice);
+const btnSave = document.getElementById('button');
 btnSave.addEventListener('click', () => collectData());
 
 function collectData () {
@@ -80,8 +80,8 @@ function collectData () {
         hobbies: hobbiesChoice, 
     }
     usersList.push(user);
-    usersDisplay.push(user);
-    drawUser(user);
+    usersDisplay = usersList;
+    drawList(usersDisplay);
 }
 
 function drawUser(user) {
@@ -123,11 +123,12 @@ function drawUser(user) {
     hobbiesDisplay.classList.add("name");
     outputUser.appendChild(hobbiesDisplay);
 
-    let myIndex = usersList.findIndex(el => el.name === user.name);
-        
+    let myIndex = usersList.findIndex(el => el === user);
+    
     let deleteBtn = document.createElement('button');
     deleteBtn.innerHTML = "Delete"
     deleteBtn.classList.add("smallButton");
+    deleteBtn.setAttribute("id", myIndex);
     deleteBtn.addEventListener('click', () => deleteUser (myIndex));
     outputUser.appendChild(deleteBtn);
 }
@@ -147,8 +148,6 @@ btn6.addEventListener('click', () => filterUsers ("Male"));
 btn7.addEventListener('click', () => filterUsers ("Female"));
 
 function sortUsers (sortOption) {
-    clearContainers();
-
     if (sortOption === "ascendNames") {        
         usersDisplay = usersDisplay.sort((a, b) => a.name.localeCompare(b.name));
         console.log('sortedASC', usersDisplay);
@@ -170,8 +169,6 @@ function sortUsers (sortOption) {
 }
 
 function filterUsers (filterOption) {
-    clearContainers();
-
     if (filterOption === "Male") {
         usersDisplay = usersList.filter(el => el.sex === 'Male');
         console.log('sexM', usersDisplay);
@@ -192,8 +189,6 @@ searchField.addEventListener('input', () => seekUsers());
 btn8.addEventListener('click', () => clearSearch());
 
 function seekUsers() {
-    clearContainers();
-
     let inputText = searchField.value.toLowerCase();
 
     if(inputText.length >= 3) {
@@ -209,25 +204,31 @@ function seekUsers() {
 }
 
 function drawList(list) {
-    list.forEach((el) => {
-        drawUser(el);
-    })
-}
-
-function clearSearch() {
-    searchField.value = '';
-    clearContainers();    
-    usersDisplay = usersList;
-    drawList(usersDisplay);
-}
-
-function clearContainers() {
     const existingContainers = [...document.getElementsByClassName('container')];
     if (existingContainers.length) {
         existingContainers.forEach((el) => {
             el.remove();
         })
     }
+    list.forEach((el) => {
+        drawUser(el);
+    })
+    if(list.length === 0) {
+        let noResult = document.createElement('div');
+        noResult.classList.add("container");
+        outputField.appendChild(noResult);
+
+        let notification = document.createElement('div');
+        notification.innerHTML = "Sorry, no matching users. :( ";
+        notification.classList.add("noResult");
+        noResult.appendChild(notification);
+    }
+}
+
+function clearSearch() {
+    searchField.value = ''; 
+    usersDisplay = usersList;
+    drawList(usersDisplay);
 }
 
 function deleteUser (myIndex) {
@@ -235,7 +236,7 @@ function deleteUser (myIndex) {
 
     searchField.value = '';
     usersList.splice(myIndex, 1);
-    clearContainers();    
+    console.log("usersList after splice: ", usersList); 
     usersDisplay = usersList;
     drawList(usersDisplay);
 }
